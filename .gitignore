@@ -1,0 +1,14 @@
+notes.txt
+*.log
+
+
+# Node modules
+API_GATEWAY/node_modules/
+frontend-vite/node_modules/
+Notification/node_modules/
+PurchaseOrder/node_modules/
+Users/node_modules/
+Vendors/node_modules/
+Authentication/node_modules/
+
+
