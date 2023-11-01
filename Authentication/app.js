@@ -14,11 +14,13 @@ const app = express();
 
 app.use(
     cors({
-        origin: [
-            "http://127.0.0.1:5174",
-            "http://192.168.91.1:5174",
-	    "http://127.0.0.1:4001"
-        ]
+        // origin: [
+        //     "http://127.0.0.1:5174",
+        //     "http://127.0.0.1:4000",
+        //     "http://192.168.1.25:4000"
+        // ]
+
+        origin: "*",
     })
 )
 app.use(express.json())

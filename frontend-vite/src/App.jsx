@@ -17,28 +17,23 @@ import Landing from './pages/unauthenticated/Landing'
 import UserDashboard from './pages/authenticated/user/UserDashboard'
 import VendorDashboard from './pages/authenticated/vendor/VendorDashboard'
 import LandingPage from './pages/authenticated/vendor/components/LandingPage'
-import Order from './pages/authenticated/vendor/order'
-
+import OrderVendor from './pages/authenticated/vendor/OrderVendor'
+import OrderUser from './pages/authenticated/user/OrderUser'
+import InviteVendor from './pages/authenticated/user/InviteVendor'
+import NotificationUser from './pages/authenticated/user/NotificationUser'
 function App() {
 
-  const usertype = localStorage.getItem('usertype')
+
   // ***** dummy data *************
+
   const token = "jaklsdjfi0wjfjaopksdufljasdlkfj" // jwt
+  const usertype = localStorage.getItem('usertype')
 
   // ***** dummy data end *************
   return (
     <Router>
       <Routes>
         <Route>
-          {/* Authenticated routes */}
-          <Route element={<ProtectedRotues usertype={usertype} cstmusertype={'vendor'} token={token} redirect='/home' />}>
-
-            <Route element={<VendorDashboard />}>
-              <Route path='/vendor' element={<Navigate to={'/vendor/dashboard'} />} />
-              <Route path='/vendor/dashboard' element={<LandingPage />} />
-              <Route path='/vendor/order' element={<Order />} />
-            </Route>
-          </Route>
 
 
 
@@ -54,6 +49,33 @@ function App() {
             </Route>
           </Route>
 
+          {/* Authenticated routes */}
+          <Route element={<ProtectedRotues usertype={usertype} cstmusertype={'vendor'} token={token} redirect='/home' />}>
+
+            <Route element={<VendorDashboard />}>
+              <Route path='/vendor' element={<Navigate to={'/vendor/dashboard'} />} />
+              <Route path='/vendor/dashboard' element={<LandingPage />} />
+              <Route path='/vendor/order' element={<OrderVendor />} />
+            </Route>
+          </Route>
+
+
+          {/* Authenticated routes */}
+          <Route element={<ProtectedRotues usertype={usertype} cstmusertype={'user'} token={token} redirect='/home' />}>
+
+            <Route element={<UserDashboard />}>
+              <Route path='/user' element={<Navigate to={'/vendor/dashboard'} />} />
+              <Route path='/user/dashboard' element={<LandingPage />} />
+              <Route path='/user/order' element={<OrderUser />} />
+              <Route path='/user/invite' element={<InviteVendor />} />
+              <Route path='/user/notification' element={<NotificationUser />} />
+            </Route>
+          </Route>
+
+
+
+
+          {/* create 404 page [ common ]*/}
 
         </Route>
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useLoginMutation } from '../../../redux/API/AuthApi'
 import { useNavigate } from 'react-router-dom';
@@ -11,20 +11,37 @@ import { LoginYup } from '../../../utils/YupValidation/AuthYup';
 
 const Login = () => {
     const navigate = useNavigate();
-
+    const [userLog, setuserLog] = useState("");
     const [logincall, { isError, isLoading, isSuccess }] = useLoginMutation();
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(LoginYup)
     });
 
     const loginReq = async (data) => {
 
-
         const user = await logincall({
-            email: isemail,
-            password: ispa
+            email: data.email,
+            password: data.password
         })
+        setuserLog(user.data)
     }
+
+
+    useEffect(() => {
+        if (isSuccess) {
+            console.log("Login successfull..")
+        }
+        if (userLog) {
+            console.log(userLog)
+            localStorage.setItem('token', userLog.token)
+            localStorage.setItem('usertype', 'user')
+
+            navigate("/user/dashboard")
+        }
+
+
+    }, [isError, isSuccess, userLog])
 
 
 

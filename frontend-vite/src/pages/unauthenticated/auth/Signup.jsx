@@ -9,44 +9,57 @@ import { SignupYup } from '../../../utils/YupValidation/AuthYup';
 import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
 
+
 const Signup = () => {
     const navigate = useNavigate();
     const [usertype, setUsertype] = useState("user")
+    const [vendor, setVendor] = useState(null)
+    const [user, setUser] = useState(null)
+
+
     const handleRadioChange = (event) => {
         setUsertype(event.target.value);
     };
 
 
+    // ******** api callinng ******
     const [signup_user, { isError: isErr_user, isSuccess: isSuc_user, isLoading: isLo_user }] = useSignup_userMutation();
+
     const [signup_vendor, { isError: isErr_vendor, isSuccess: isSuc_vendor, isLoading: isLo_vendor }] = useSignup_vendorMutation();
 
+
+    // ****** Yup resolver ********
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(SignupYup)
     });
 
-    const [vendor, setVendor] = useState(null)
+
     const singnupReq = async (data) => {
+        console.log(usertype)
 
         if (usertype == 'user') {
-            var user = await signup_user({
+            const req = await signup_user({
                 firstname: data.firstname,
                 lastname: data.lastname,
                 email: data.email,
                 password: data.password,
-                usertype: usertype // comming from usesate
+                usertype: usertype
             })
+            setUser(req.data)
+
         } else if (usertype == 'vendor') {
 
-            let res = await signup_vendor({
+            const res = await signup_vendor({
                 firstname: data.firstname,
                 lastname: data.lastname,
                 email: data.email,
                 password: data.password,
-                usertype: usertype // comming from usesate
+                usertype: usertype
             })
             setVendor(res.data)
 
         }
+
     }
 
     useEffect(() => {
@@ -55,19 +68,28 @@ const Signup = () => {
         }
 
         if (isSuc_vendor) {
-            console.log('success asdf')
+            console.log('successfull request.')
             if (vendor) {
                 console.log(vendor)
                 localStorage.setItem('token', vendor.token)
-                localStorage.setItem('usertype', vendor.user.usertype)
+                localStorage.setItem('usertype', 'vendor')
+                navigate('/vendor/dashboard')
             }
-            navigate('/vendor/dashboard')
         }
 
+        if (isSuc_user) {
+            console.log('successfull request.')
+            if (user) {
+                console.log(vendor)
+                localStorage.setItem('token', user.token)
+                localStorage.setItem('usertype', 'user')
+                navigate('/user/dashboard')
+            }
+        }
+
+    }, [isErr_vendor, isSuc_vendor, isSuc_user, vendor, user])
 
 
-
-    }, [isErr_vendor, isSuc_vendor, vendor])
 
 
 

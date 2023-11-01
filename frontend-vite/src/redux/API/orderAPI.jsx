@@ -2,27 +2,26 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 
 
-export const AuthenticationAPI = createApi({
+export const OrderAPI = createApi({
     reducerPath: "Auth",
 
     baseQuery: fetchBaseQuery({
         // check url variable fetch
         baseUrl: "http://localhost:9001/api",
-        // if mobile is in local environement then use the chang base url with ip
         // credentials: "include"
     }),
     tagTypes: ['AUTH'], // to refetch the api
     endpoints: (builder) => ({
-        login: builder.mutation({
+        createOrder: builder.mutation({
             query: (data) => ({
-                url: `/login`,
+                url: `/user/create-order`,
                 method: "POST",
                 body: data
             })
         }),
-        signup_user: builder.mutation({
+        confirmOrderDate: builder.mutation({
             query: (data) => ({
-                url: `/signup-user`,
+                url: `/user/confirmSchedule/:id`,
                 method: "POST",
                 body: data
             })

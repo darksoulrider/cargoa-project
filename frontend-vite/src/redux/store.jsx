@@ -8,6 +8,7 @@ const Store = configureStore({
     reducer: {
         [AuthenticationAPI.reducerPath]: AuthenticationAPI.reducer,
 
+
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
