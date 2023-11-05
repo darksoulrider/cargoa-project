@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import morgan from 'morgan';
 import helmet from 'helmet';
-
+import cookieParser from 'cookie-parser';
 
 dotenv.config({
     path: './config/.env'
@@ -21,8 +21,14 @@ app.use(
         // ]
 
         origin: "*",
-    })
+        // credentials: true
+    }),
+
+
 )
+
+app.use(cookieParser())
+
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true,
@@ -38,8 +44,10 @@ app.use(morgan('dev'))
 
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import vendorRotes from './routes/vendorRoutes.js'
 app.use("/api", authRoutes);
 app.use("/api", userRoutes)
+app.use("/api", vendorRotes)
 
 
 

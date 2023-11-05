@@ -21,6 +21,10 @@ import OrderVendor from './pages/authenticated/vendor/OrderVendor'
 import OrderUser from './pages/authenticated/user/OrderUser'
 import InviteVendor from './pages/authenticated/user/InviteVendor'
 import NotificationUser from './pages/authenticated/user/NotificationUser'
+import Notification from './pages/authenticated/vendor/Notification'
+import ViewOrder from './pages/authenticated/user/ViewOrder'
+import ViewVendorOrder from './pages/authenticated/vendor/VIewVendorOrder'
+
 function App() {
 
 
@@ -38,7 +42,7 @@ function App() {
 
 
           {/* Unauthenticated routes */}
-          <Route element={<UnAuthProtectedRoutes usertype={usertype} token={token} />}>
+          <Route element={<UnAuthProtectedRoutes token={token} />}>
             <Route element={<Dashboard />}>
               <Route path='/' element={<Navigate to={'/home'} />} />
               <Route path='/home' element={<Landing />} />
@@ -50,25 +54,31 @@ function App() {
           </Route>
 
           {/* Authenticated routes */}
-          <Route element={<ProtectedRotues usertype={usertype} cstmusertype={'vendor'} token={token} redirect='/home' />}>
+          <Route element={<ProtectedRotues cstmusertype={'vendor'} redirect='/home' />}>
 
             <Route element={<VendorDashboard />}>
               <Route path='/vendor' element={<Navigate to={'/vendor/dashboard'} />} />
               <Route path='/vendor/dashboard' element={<LandingPage />} />
               <Route path='/vendor/order' element={<OrderVendor />} />
+              <Route path='/vendor/order/:id' element={<ViewVendorOrder />} />
+              <Route path='/vendor/notification' element={<Notification />} />
             </Route>
+
           </Route>
 
 
           {/* Authenticated routes */}
-          <Route element={<ProtectedRotues usertype={usertype} cstmusertype={'user'} token={token} redirect='/home' />}>
+          <Route element={<ProtectedRotues cstmusertype={'user'} redirect='/home' />}>
 
             <Route element={<UserDashboard />}>
+
               <Route path='/user' element={<Navigate to={'/vendor/dashboard'} />} />
               <Route path='/user/dashboard' element={<LandingPage />} />
               <Route path='/user/order' element={<OrderUser />} />
+              <Route path='/user/order/:id' element={<ViewOrder />} />
               <Route path='/user/invite' element={<InviteVendor />} />
               <Route path='/user/notification' element={<NotificationUser />} />
+
             </Route>
           </Route>
 

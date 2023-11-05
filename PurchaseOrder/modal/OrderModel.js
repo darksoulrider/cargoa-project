@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { DateTime } from "luxon";
 
 const orderSchema = new mongoose.Schema({
-    orderCreatdBy: {
+    orderCreatedBy: {
         type: String,
         required: [true, 'user info needed']
     },
@@ -38,11 +38,14 @@ const orderSchema = new mongoose.Schema({
         type: String, // date
     },
     vendorAction: {
-        // for  giving option as schedule, [ it will be checked before vendor try to change via burpsuite as cheating]
         type: Boolean,
         default: false,
     },
-    confired_schedule: {
+    userAction: {
+        type: Boolean,
+        default: false,
+    },
+    confirmed_schedule: {
         type: String,
     },
     orderpdf: {

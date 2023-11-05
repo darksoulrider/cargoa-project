@@ -5,7 +5,7 @@ const UserDashboard = () => {
     return (
         <div className='flex flex-row'>
             <UserNav />
-            <div>
+            <div className='w-full'>
                 <Outlet />
             </div>
         </div>

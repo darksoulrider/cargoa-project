@@ -73,6 +73,7 @@ const Signup = () => {
                 console.log(vendor)
                 localStorage.setItem('token', vendor.token)
                 localStorage.setItem('usertype', 'vendor')
+
                 navigate('/vendor/dashboard')
             }
         }
@@ -83,6 +84,7 @@ const Signup = () => {
                 console.log(vendor)
                 localStorage.setItem('token', user.token)
                 localStorage.setItem('usertype', 'user')
+
                 navigate('/user/dashboard')
             }
         }

@@ -8,7 +8,9 @@ dotenv.config({
     path: "./config/.env"
 })
 
-pp.use(cors())
+pp.use(cors({
+    origin: "*",
+}))
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true,

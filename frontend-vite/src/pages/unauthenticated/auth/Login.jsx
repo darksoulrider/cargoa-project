@@ -9,9 +9,10 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 import { LoginYup } from '../../../utils/YupValidation/AuthYup';
 
+
 const Login = () => {
     const navigate = useNavigate();
-    const [userLog, setuserLog] = useState("");
+    const [userLog, setUserLog] = useState(null);
     const [logincall, { isError, isLoading, isSuccess }] = useLoginMutation();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -20,26 +21,26 @@ const Login = () => {
 
     const loginReq = async (data) => {
 
-        const user = await logincall({
+        let user = await logincall({
             email: data.email,
             password: data.password
         })
-        setuserLog(user.data)
+        setUserLog(user.data)
+
     }
 
 
     useEffect(() => {
         if (isSuccess) {
             console.log("Login successfull..")
+            console.log(userLog)
         }
         if (userLog) {
-            console.log(userLog)
+
             localStorage.setItem('token', userLog.token)
-            localStorage.setItem('usertype', 'user')
-
-            navigate("/user/dashboard")
+            localStorage.setItem('usertype', userLog.user.usertype)
+            navigate(`/${userLog.user.usertype}/dashboard`)
         }
-
 
     }, [isError, isSuccess, userLog])
 

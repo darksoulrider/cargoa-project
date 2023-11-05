@@ -2,13 +2,14 @@ import React from "react";
 import { useNavigate, Navigate, Outlet, redirect } from "react-router-dom";
 
 const UnAuthProtectedRoutes = ({
-    token,
     children,
     redirect = "/home"
 }) => {
 
 
     let usertype = localStorage.getItem('usertype')
+    let token = localStorage.getItem('token')
+
     const enums = {
         user: 'user',
         vendor: 'vendor'

@@ -5,17 +5,20 @@ import jwt from "jsonwebtoken";
 
 
 const isAuthenticated = catchAsyncError(async (req, res, next) => {
-    console.log(headers); // checking if token if another serivice calls or not
-
-    let token = req.headers.cookie.split("=")[1]
-    console.log(token)
+    let t;
+    if (req.headers.authorization) {
+        t = req.headers.authorization
+    } else {
+        t = req.headers.Authorization
+    }
+    let token = t.split(" ")[1]
     let secret = process.env.JWT_ACCESS_SECRET
     let user_decode = jwt.verify(token, secret);
 
     req.usertype = user_decode.usertype;
     req.email = user_decode.email;
     req.userid = user_decode._id;
-
+    req.token = token;
     next();
 
 })

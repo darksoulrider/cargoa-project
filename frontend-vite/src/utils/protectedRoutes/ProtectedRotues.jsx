@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigate, Navigate, Outlet } from "react-router-dom";
 
 
-const ProtectedRotues = ({ token, cstmusertype, children, redirect = "/home" }) => {
+const ProtectedRotues = ({ cstmusertype, children, redirect = "/home" }) => {
 
     const usertype = localStorage.getItem('usertype')
+    const token = localStorage.getItem('token')
 
     if (!token || usertype != cstmusertype) {
         // go for unauthenticated

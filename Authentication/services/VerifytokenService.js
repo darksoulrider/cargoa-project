@@ -6,10 +6,10 @@ import ErrorHandler from "../utils/ErrorHandler.js";
 
 
 
-// this controller here if do not want to copy jwt secret
+// ! this controller here if do not want to copy jwt secret
 export const isAuthenticated = catchAsyncError(async (req, res, next) => {
     const { token } = req.body;
-    console.log("hit Is authenticated...")
+    console.log("Hit Is_authenticated...")
 
     if (!token) {
         return next(new ErrorHandler("Invalid token", 400))
