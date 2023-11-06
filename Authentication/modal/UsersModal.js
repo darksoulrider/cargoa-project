@@ -4,6 +4,8 @@ import bcryptjs from 'bcryptjs';
 import jwt from "jsonwebtoken";
 const usertype = ['user', 'vendor'];
 
+
+// ***********  user modal below ********
 const UserSchema = new mongoose.Schema({
     firstname: {
         type: String,

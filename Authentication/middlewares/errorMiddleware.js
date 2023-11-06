@@ -1,5 +1,7 @@
 import ErrorHandler from "../utils/ErrorHandler.js";
 
+
+// ************ this middleware to send error response based on the error ********
 const errormiddleware = (err, req, res, next) => {
     err.message = err.message || "Something went  wrong";
     err.statuscode = err.statuscode || 500

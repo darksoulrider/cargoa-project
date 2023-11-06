@@ -5,6 +5,9 @@ import UserModal from "../modal/UsersModal.js"
 import bcryptjs from 'bcryptjs';
 import sendtoken from "../utils/sendtoken.js";
 
+
+
+// ************** sing-up user controller **********************
 export const signup_user = catchAsyncError(async (req, res, next) => {
     console.log("signup user hit")
 
@@ -24,7 +27,7 @@ export const signup_user = catchAsyncError(async (req, res, next) => {
 
 })
 
-// just to make it flexible in future [ different controller ]
+// ************** sing-up vendor controller **********************
 export const signup_vendor = catchAsyncError(async (req, res, next) => {
     console.log("signup vendor hit")
 
@@ -45,6 +48,8 @@ export const signup_vendor = catchAsyncError(async (req, res, next) => {
 
 });
 
+
+// ************** login controller **********************
 export const login = catchAsyncError(async (req, res, next) => {
 
     console.log("login hit")
@@ -61,6 +66,8 @@ export const login = catchAsyncError(async (req, res, next) => {
 
 });
 
+
+// **************** logout controller *************
 export const logout = async (req, res, next) => {
     res.clearCookie('token', {
         httpOnly: true,
@@ -75,8 +82,6 @@ export const logout = async (req, res, next) => {
     })
 }
 
-export const forgetPassword = async (req, res, next) => {
 
-}
 
 

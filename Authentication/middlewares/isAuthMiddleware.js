@@ -3,7 +3,7 @@ import axios from "axios";
 
 import jwt from "jsonwebtoken";
 
-
+// **************** this middleware checks the authentication ******************
 const isAuthenticated = catchAsyncError(async (req, res, next) => {
     let t;
     if (req.headers.authorization) {

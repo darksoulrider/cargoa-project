@@ -6,7 +6,7 @@ import helmet from "helmet"
 import morgan from "morgan"
 import cookieParser from 'cookie-parser'
 
-
+// ********* APP CONFIGURATION *************
 const app = express()
 
 dotenv.config({
@@ -39,7 +39,6 @@ app.use('/api/v3', Orderroutes)
 
 // ********* Error middleware *************
 import errormiddleware from "./middleware/errorMiddleware.js"
-import ErrorHandler from "./utills/ErrorHandler.js"
 app.use(errormiddleware)
 
 export default app;

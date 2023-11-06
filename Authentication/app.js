@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 
+// ********** app configuration
 dotenv.config({
     path: './config/.env'
 })
@@ -23,12 +24,9 @@ app.use(
         origin: "*",
         // credentials: true
     }),
-
-
 )
 
 app.use(cookieParser())
-
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true,
@@ -50,12 +48,9 @@ app.use("/api/v1", userRoutes)
 app.use("/api/v1", vendorRotes)
 
 
-
-
-
-
-// keep this for errormiddleware
+// ********** Globle Error handling setup **********
 import errormiddleware from './middlewares/errorMiddleware.js';
 app.use(errormiddleware)
+
 export default app;
 

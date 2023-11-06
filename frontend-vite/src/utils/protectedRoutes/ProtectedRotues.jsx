@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, Navigate, Outlet } from "react-router-dom";
 
 
+// ******* Routes protection after login *********
 const ProtectedRotues = ({ cstmusertype, children, redirect = "/home" }) => {
 
     const usertype = localStorage.getItem('usertype')

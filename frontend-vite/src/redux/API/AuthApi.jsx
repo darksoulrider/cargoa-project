@@ -4,7 +4,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 const token = localStorage.getItem('token')
 
 
-// ! make lazy hooke for some api endpoints
 export const AuthenticationAPI = createApi({
     reducerPath: "Auth",
 

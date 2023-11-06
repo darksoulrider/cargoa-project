@@ -1,5 +1,6 @@
 
 
+// ************ Send response with JWT token *****************
 const sendtoken = async (res, user, message, statuscode = 200) => {
 
     const token = await user.getJWTtoken()

@@ -3,6 +3,8 @@ import ErrorHandler from "../utils/ErrorHandler.js";
 import UserModal from "../modal/UsersModal.js";
 import { all } from "axios";
 
+
+// *************** get single vendor ***************
 export const getSingleVendor = catchAsyncError(async (req, res, next) => {
 
     // const vendor_id = req.params.id; // or query.id
@@ -25,7 +27,7 @@ export const getSingleVendor = catchAsyncError(async (req, res, next) => {
 
 })
 
-
+// *************** get all vendor ***************
 export const getAllvendors = catchAsyncError(async (req, res, next) => {
 
     const all_vendor = await UserModal.find({ usertype: 'vendor' })

@@ -8,12 +8,6 @@ const router = express.Router();
 import isAuthenticated from '../middlewares/isAuthMiddleware.js';
 import * as vendorController from "../controllers/vendorController.js"
 
-// ! if user exist [ change later on this ]
-// router.route('/userinfo').get(isAuthenticated, usercontroller.getuser)
-// router.route('/vendorinfo').get(usercontroller.getvendor)
-
-
-
 // ******* get single vendor ******
 router.route("/vendor/info").get(isAuthenticated, vendorController.getSingleVendor)
 // router.route("/vendor/:id").get(isAuthenticated, vendorController.getSingleVendor)

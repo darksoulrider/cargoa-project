@@ -5,7 +5,7 @@ import { AuthenticationAPI } from "./API/AuthApi";
 import { OrderAPI } from "./API/orderAPI";
 import { NotificationAPI } from "./API/NotificationAPI";
 
-
+// store application
 const Store = configureStore({
     reducer: {
         [AuthenticationAPI.reducerPath]: AuthenticationAPI.reducer,

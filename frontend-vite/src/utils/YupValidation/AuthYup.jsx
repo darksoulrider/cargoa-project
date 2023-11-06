@@ -2,7 +2,7 @@ import React from "react";
 import * as yup from 'yup'
 
 
-
+// **** yup validation
 export const LoginYup = yup.object().shape({
     email: yup.string().email().required("Please enter your email"),
     password: yup.string()

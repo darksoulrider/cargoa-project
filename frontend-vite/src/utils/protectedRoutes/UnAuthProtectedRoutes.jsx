@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate, Navigate, Outlet, redirect } from "react-router-dom";
 
+
+
+// ********* routes protection before login ***********
 const UnAuthProtectedRoutes = ({
     children,
     redirect = "/home"
