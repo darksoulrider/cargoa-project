@@ -16,7 +16,7 @@ export const OrderAPI = createApi({
             headers.set('Access-Control-Allow-Origin', '*')
             return headers;
         },
-        baseUrl: "http://localhost:9002/api",
+        baseUrl: "http://localhost:9002/api/v2",
 
     }),
     tagTypes: ['order', 'vendorOrder'], // to refetch the api

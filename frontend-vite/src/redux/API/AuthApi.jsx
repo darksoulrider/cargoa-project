@@ -10,7 +10,7 @@ export const AuthenticationAPI = createApi({
 
     baseQuery: fetchBaseQuery({
         // check url variable fetch
-        baseUrl: "http://localhost:9001/api",
+        baseUrl: "http://localhost:9001/api/v1",
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {

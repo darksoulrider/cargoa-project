@@ -4,6 +4,7 @@ import ErrorHandler from "../utills/ErrorHandler.js";
 import { isValidDate } from "../utills/helper.js";
 import axios from 'axios'
 import { authservice } from "../constants/authServiceConstant.js";
+import { produceMessage } from "../kafka/producer.js";
 
 import fs from 'fs';
 
@@ -52,8 +53,20 @@ export const createOrder = catchAsyncError(async (req, res, next) => {
             orderpdf: req.file.filename
         })
 
-        // ! create kafka service to sendemail here 
+        // ! create kafka service to produce
+        try {
 
+            const k_data = {
+                orderCreatedBy: data.orderCreatedBy,
+                message: `${orderCreatedBy} - created order`,
+                vendor: data.vendor,
+            }
+
+
+            await produceMessage('order', data)
+        } catch (error) {
+            console.log(`Kafka-produce Error occured: ${error.message}`)
+        }
 
         res.status(200).json({
             success: true,

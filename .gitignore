@@ -3,6 +3,7 @@ notes.txt
 
 
 # Node modules
+kafka-server/node_modules/
 API_GATEWAY/node_modules/
 frontend-vite/node_modules/
 Notification/node_modules/

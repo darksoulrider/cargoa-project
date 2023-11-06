@@ -36,8 +36,8 @@ import userOrderRoutes from "./routes/userOrderRoutes.js"
 import vendorOrderRoutes from "./routes/vendorOrderRoutes.js"
 
 
-app.use('/api/user', userOrderRoutes)
-app.use('/api/vendor', vendorOrderRoutes)
+app.use('/api/v2/user', userOrderRoutes)
+app.use('/api/v2/vendor', vendorOrderRoutes)
 
 
 // ********* Error middleware *************

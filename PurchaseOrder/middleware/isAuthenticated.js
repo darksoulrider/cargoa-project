@@ -21,6 +21,7 @@ const isAuthenticated = catchAsyncError(async (req, res, next) => {
     req.email = user_decode.email;
     req.userid = user_decode._id;
     req.token = token;
+
     next();
 
 })

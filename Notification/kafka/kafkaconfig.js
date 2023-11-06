@@ -1,8 +1,9 @@
-const { Kafka } = require('kafkajs')
+import pkg from 'kafkajs'
 
-const kafka = new Kafka({
+const { Kafka } = pkg;
+
+
+export const kafka = new Kafka({
     clientId: 'notification-service',
-    brokers: ['kafka1:9092', 'kafka2:9092'],
+    brokers: ['192.168.119.128:9092']
 })
-
-export default kafka;

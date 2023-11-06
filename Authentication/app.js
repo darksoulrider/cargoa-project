@@ -45,9 +45,9 @@ app.use(morgan('dev'))
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import vendorRotes from './routes/vendorRoutes.js'
-app.use("/api", authRoutes);
-app.use("/api", userRoutes)
-app.use("/api", vendorRotes)
+app.use("/api/v1", authRoutes);
+app.use("/api/v1", userRoutes)
+app.use("/api/v1", vendorRotes)
 
 
 

@@ -33,7 +33,7 @@ app.use(morgan('dev'))
 
 import EmailRoutes from "./routes/Email.js"
 
-app.use('/api', EmailRoutes)
+app.use('/api/v3', EmailRoutes)
 
 
 // ********* Error middleware *************

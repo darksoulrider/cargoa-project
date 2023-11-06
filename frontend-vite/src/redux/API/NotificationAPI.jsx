@@ -9,7 +9,7 @@ export const NotificationAPI = createApi({
     reducerPath: "Notification",
     baseQuery: fetchBaseQuery({
         // check url variable fetch
-        baseUrl: "http://localhost:9003/api",
+        baseUrl: "http://localhost:9003/api/v3",
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {

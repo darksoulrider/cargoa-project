@@ -1,7 +1,7 @@
 
 const AUTH_URL = "http://localhost:9001"
-const GET_USER_INFO = `${AUTH_URL}/api/user/info`
-const GET_VENDOR_INFO = `${AUTH_URL}/api/vendor/info`
+const GET_USER_INFO = `${AUTH_URL}/api/v1/user/info`
+const GET_VENDOR_INFO = `${AUTH_URL}/api/v1/vendor/info`
 
 
 
