@@ -1,7 +1,16 @@
 import React from 'react'
-
+import { useGetNotificationQuery } from '../../../redux/API/NotificationAPI'
+import { useNavigate } from 'react-router-dom'
 const Notification = () => {
+    const navigate = useNavigate()
 
+    const res = useGetNotificationQuery(undefined, {
+        refetchOnMountOrArgChange: true
+    })
+
+    if (res.isLoading && !res.data) {
+        return <div>loading...</div>
+    }
 
     return (
         <div>
@@ -10,17 +19,24 @@ const Notification = () => {
             </div>
             <div className='mx-auto  w-[80rem]  shadow-sm text-slate-900 font-semibold '>
 
-                <div onClick={() => { }} className='cursor-pointer  rounded-md  px-2 mt-10 py-2 bg-blue-200  hover:bg-blue-300  '>
-                    <h1 className='mb-2'>New Order: [ Title phone 1 ] </h1>
-                </div>
-                <div onClick={() => { }} className='cursor-pointer rounded-md my-2 px-2 py-2 bg-blue-200 hover:bg-blue-300  mb-10'>
-                    <h1 className='mb-2'>New Order: [ Title phone 1 ] </h1>
-                </div>
+                <div className='pt-10'>
+                    {res.data.notification.length != 0 ?
+                        res.data.notification.slice().reverse().map((val, key) => {
+                            return (
+                                <div key={key} onClick={() => { navigate(`/vendor/order/${val.orderid}`) }} className='cursor-pointer mb-2  rounded-md  px-2 py-2 bg-blue-200  hover:bg-blue-300  '>
+                                    <h1 className='mb-2'> {val.message} </h1>
+                                </div>
+                            )
+                        }) : <div><h1>No notification available</h1></div>
+                    }
+                    {/* <div onClick={() => { }} className='cursor-pointer mb-2  rounded-md  px-2 py-2 bg-blue-200  hover:bg-blue-300  '>
+                        <h1 className='mb-2'> {res.data?.notification[0].message} </h1>
+                    </div>
 
-
-                {/* <div className='mr-10'>
-                    <button onClick={() => { }} className='bg-slate-800 text-white px-6 rounded-md hover:bg-slate-900 py-1'>View</button>
-                </div> */}
+                    <div onClick={() => { }} className='cursor-pointer  rounded-md  px-2  py-2 bg-blue-200  hover:bg-blue-300  '>
+                        <h1 className='mb-2'> {res.data?.notification[0].message} </h1>
+                    </div> */}
+                </div>
             </div>
         </div>
     )

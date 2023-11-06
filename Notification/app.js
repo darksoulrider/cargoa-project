@@ -32,8 +32,9 @@ app.use(morgan('dev'))
 // *********** Routes ***********
 
 import EmailRoutes from "./routes/Email.js"
-
+import Orderroutes from './routes/OrderNotification.js'
 app.use('/api/v3', EmailRoutes)
+app.use('/api/v3', Orderroutes)
 
 
 // ********* Error middleware *************

@@ -37,9 +37,18 @@ export const NotificationAPI = createApi({
                 method: 'GET',
             })
         }),
+
+
         getAllUser: builder.query({
             query: () => ({
                 url: `/user/getAlluser`,
+                method: 'GET',
+            })
+        }),
+
+        getNotification: builder.query({
+            query: () => ({
+                url: `/notification`,
                 method: 'GET',
             })
         }),
@@ -50,4 +59,5 @@ export const NotificationAPI = createApi({
 
 export const {
     useSendInviteMutation,
+    useGetNotificationQuery
 } = NotificationAPI;

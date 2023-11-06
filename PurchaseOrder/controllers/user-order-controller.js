@@ -58,12 +58,12 @@ export const createOrder = catchAsyncError(async (req, res, next) => {
 
             const k_data = {
                 orderCreatedBy: data.orderCreatedBy,
-                message: `${orderCreatedBy} - created order`,
+                message: `${data.orderCreatedBy} - created order`,
                 vendor: data.vendor,
+                orderid: data._id,
+                key: 'order-create'
             }
-
-
-            await produceMessage('order', data)
+            await produceMessage('order', k_data)
         } catch (error) {
             console.log(`Kafka-produce Error occured: ${error.message}`)
         }
@@ -119,12 +119,11 @@ export const getUserSingleOrder = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler('No order found', 404))
     }
 
+
     res.status(200).json({
         success: true,
         order: order
     })
-
-
 
 })
 
@@ -164,6 +163,21 @@ export const confirmSchedule = catchAsyncError(async (req, res, next) => {
     order.userAction = true;
     await order.validate();
     order = await order.save();
+
+
+    try {
+
+        const k_data = {
+            orderCreatedBy: order.orderCreatedBy,
+            message: `${order.orderCreatedBy} - Confiremd Schedule for order`,
+            vendor: order.vendor,
+            orderid: order._id,
+            key: 'confirm-order'
+        }
+        await produceMessage('order', k_data)
+    } catch (error) {
+        console.log(`Kafka-produce Error occured: ${error.message}`)
+    }
 
 
     // ! send email to vendor after confirming the order-schedule

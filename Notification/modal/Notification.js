@@ -17,7 +17,11 @@ const notify_Schema = new mongoose.Schema({
     viewed: {
         type: Boolean,
         default: false
+    },
+    orderid: {
+        type: String
     }
+
 }, {
     validateBeforeSave: true,
     timestamps: true

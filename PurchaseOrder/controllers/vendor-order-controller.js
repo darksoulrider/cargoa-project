@@ -6,7 +6,7 @@ import { isValidDate } from "../utills/helper.js";
 import jwt from 'jsonwebtoken'
 import axios from 'axios'
 import { authservice } from "../constants/authServiceConstant.js";
-
+import { produceMessage } from "../kafka/producer.js";
 
 // ********** Set Schedule for the order ***************
 
@@ -41,6 +41,24 @@ export const setSchedule = catchAsyncError(async (req, res, next) => {
 
     await order.validate();
     order = await order.save()
+
+    // *************** kafka producer ***********
+    try {
+
+        const k_data = {
+            orderCreatedBy: order.orderCreatedBy,
+            message: `${order.vendor} -Vendor set schedule for order`,
+            vendor: order.vendor,
+            orderid: order._id,
+            key: 'vendor-schedule'
+        }
+        console.log(k_data)
+        await produceMessage('order', k_data)
+    } catch (error) {
+        console.log(`Kafka-produce Error occured: ${error.message}`)
+    }
+
+
 
     res.status(200).json({
         success: true,
