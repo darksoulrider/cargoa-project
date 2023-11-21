@@ -2,8 +2,8 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 
 
-const USER_EMAIL = "mackrathod014@gmail.com"
-const USER_PWD = "Wdvanouixihzychc"
+const USER_EMAIL = "@gmail.com"
+const USER_PWD = ""
 
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
